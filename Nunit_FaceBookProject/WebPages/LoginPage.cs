@@ -1,26 +1,34 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using SeleniumExtras.PageObjects;
 
 
 namespace Nunit_FaceBookProject.WebPages
 {
     public class LoginPage
     {
-        public static void AssertAfterLaunching(IWebDriver driver)
+        public LoginPage(IWebDriver driver)
         {
-            string title1 = "Facebook - உள்நுழையவும் அல்லது பதிவுசெய்யவும்";
-            string title = driver.Title;
-            Assert.AreEqual(title1, title);
+            PageFactory.InitElements(driver, this);
         }
 
-        public static void LoginToFacebook(IWebDriver driver)
-        {
-            driver.FindElement(By.Name("email")).SendKeys("9843801062");
-            System.Threading.Thread.Sleep(1000);
-            driver.FindElement(By.Id("pass")).SendKeys("vedha@1");
-            System.Threading.Thread.Sleep(1000);
-            driver.FindElement(By.Name("login")).Click();
-            System.Threading.Thread.Sleep(1000);
-        }
+        [FindsBy(How = How.Name, Using = "email")]
+        [CacheLookup]
+        public IWebElement email;
+
+        [FindsBy(How = How.Id, Using = "pass")]
+        [CacheLookup]
+        public IWebElement password;
+
+        [FindsBy(How = How.Name, Using = "login")]
+        [CacheLookup]
+        public IWebElement loginbutton;
+
+        [FindsBy(How = How.XPath, Using = "//span[contains(@class,'l9j0dhe7')]")]
+        [CacheLookup]
+        public IWebElement home;
+
+        //[FindsBy(How = How.XPath, Using = "//*[contains(@class,'n00je7tq arfg74bv qs9ysxi8 k77z8yql i09qtzwb n7fi1qx3 b5wmifdl hzruof5a pmk7jnqg j9ispegn kr520xx4 c5ndavph art1omkt ot9fgl3s rnr61an3')]")]
+        //[CacheLookup]
+        //public IWebElement photo;
     }
 }

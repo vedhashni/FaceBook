@@ -7,7 +7,7 @@ namespace Nunit_FaceBookProject.WebPages
 {
     public class RegisterClass
     {
-        public static void SignUpintoFacebook(IWebDriver driver)
+        public static void SignUpintoFacebookWithClass(IWebDriver driver)
         {
             IWebElement button= driver.FindElement(By.XPath("//*[@class='_6ltg'][2]"));
             button.Click();
@@ -35,7 +35,12 @@ namespace Nunit_FaceBookProject.WebPages
             System.Threading.Thread.Sleep(1000);
             driver.FindElement(By.Name("websubmit")).Click();
             System.Threading.Thread.Sleep(1000);
-            
+            //Robot robot = new Robot();
         }
+
+        //public static void SignUpintoFaceBookByrobotclass()
+        //{
+
+        //}
     }
 }
