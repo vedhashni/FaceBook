@@ -4,11 +4,11 @@ namespace Nunit_FaceBookProject
 {
     public class Tests:Base.BaseClass
     {
-        //[Test, Order(0)]
-        //public void InputValuesFor_SignUp()
-        //{
-        //    WebPages.RegisterClass.SignUpintoFacebookWithClass(driver);
-        //}
+        [Test, Order(0)]
+        public void InputValuesFor_SignUp()
+        {
+            WebPages.RegisterClass.SignUpintoFacebookWithClass(driver);
+        }
 
 
         [Test, Order(1)]

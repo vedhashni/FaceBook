@@ -1,7 +1,10 @@
-﻿using NUnit.Framework;
+﻿using java.awt;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using sun.awt.resources;
 using System;
+
 
 namespace Nunit_FaceBookProject.WebPages
 {
@@ -38,9 +41,10 @@ namespace Nunit_FaceBookProject.WebPages
             //Robot robot = new Robot();
         }
 
-        //public static void SignUpintoFaceBookByrobotclass()
+        //public static void SignUpintoFaceBookByrobotclass(IWebDriver driver)
         //{
-
+        //    Container container = new Container();
+        //    container.;
         //}
     }
 }
