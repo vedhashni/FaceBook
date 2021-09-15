@@ -1,20 +1,22 @@
-﻿using java.awt;
-using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using sun.awt.resources;
-using System;
+using OpenQA.Selenium.Interactions;
 
 
 namespace Nunit_FaceBookProject.WebPages
 {
-    public class RegisterClass
+    public class RegisterPage
     {
+        public static Actions notify1;
         public static void SignUpintoFacebookWithClass(IWebDriver driver)
         {
-            IWebElement button= driver.FindElement(By.XPath("//*[@class='_6ltg'][2]"));
+            IWebElement button= driver.FindElement(By.XPath("//a[@id='u_0_2_p4']"));
             button.Click();
-            System.Threading.Thread.Sleep(1000);
+
+            //notify1 = new Actions(driver);
+            //notify1.MoveByOffset((int)164.688,48).Click().Build().Perform();
+            
+            System.Threading.Thread.Sleep(5000);
             driver.FindElement(By.Name("firstname")).SendKeys("pritheesh");
             System.Threading.Thread.Sleep(1000);
             driver.FindElement(By.Name("lastname")).SendKeys("k");
@@ -26,25 +28,25 @@ namespace Nunit_FaceBookProject.WebPages
             driver.FindElement(By.Name("reg_passwd__")).SendKeys("test@123");
             System.Threading.Thread.Sleep(1000);
             SelectElement element = new SelectElement(driver.FindElement(By.Name("birthday_day")));
+            //Here we select the day by using text
             element.SelectByText("12");
             System.Threading.Thread.Sleep(1000);
             SelectElement element1 = new SelectElement(driver.FindElement(By.Id("month")));
+            //Here we select the month by using value
             element1.SelectByValue("1");
             System.Threading.Thread.Sleep(1000);
             SelectElement element2 = new SelectElement(driver.FindElement(By.Id("year")));
+            //Here we select the year by using value
             element2.SelectByValue("1999");
             System.Threading.Thread.Sleep(1000);
-            driver.FindElement(By.Name("sex")).Click();
+            SelectElement element3 = new SelectElement(driver.FindElement(By.Name("sex")));
+            element3.SelectByValue("1");
             System.Threading.Thread.Sleep(1000);
             driver.FindElement(By.Name("websubmit")).Click();
             System.Threading.Thread.Sleep(1000);
-            //Robot robot = new Robot();
+            
         }
 
-        //public static void SignUpintoFaceBookByrobotclass(IWebDriver driver)
-        //{
-        //    Container container = new Container();
-        //    container.;
-        //}
+        
     }
 }

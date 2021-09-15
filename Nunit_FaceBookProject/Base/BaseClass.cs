@@ -12,11 +12,13 @@ namespace Nunit_FaceBookProject.Base
         {
             driver = new ChromeDriver();
             driver.Url = "https://www.facebook.com/";
+            //Used to maximize the window
+            driver.Manage().Window.Maximize();
         }
         [TearDown]
         public void TearDown()
         {
-
+            //Used to close the opened session
             driver.Quit();
         }
     }
