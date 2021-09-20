@@ -10,12 +10,12 @@ namespace Nunit_FaceBookProject.WebPages
         public static Actions notify1;
         public static void SignUpintoFacebookWithClass(IWebDriver driver)
         {
-            IWebElement button= driver.FindElement(By.XPath("//a[@id='u_0_2_p4']"));
+            IWebElement button = driver.FindElement(By.XPath("//*[@class='_6ltg'][2]"));
             button.Click();
 
             //notify1 = new Actions(driver);
             //notify1.MoveByOffset((int)164.688,48).Click().Build().Perform();
-            
+
             System.Threading.Thread.Sleep(5000);
             driver.FindElement(By.Name("firstname")).SendKeys("pritheesh");
             System.Threading.Thread.Sleep(1000);
@@ -39,8 +39,8 @@ namespace Nunit_FaceBookProject.WebPages
             //Here we select the year by using value
             element2.SelectByValue("1999");
             System.Threading.Thread.Sleep(1000);
-            SelectElement element3 = new SelectElement(driver.FindElement(By.Name("sex")));
-            element3.SelectByValue("1");
+            driver.FindElement(By.Name("sex")).Click();
+            System.Threading.Thread.Sleep(1000);
             System.Threading.Thread.Sleep(1000);
             driver.FindElement(By.Name("websubmit")).Click();
             System.Threading.Thread.Sleep(1000);

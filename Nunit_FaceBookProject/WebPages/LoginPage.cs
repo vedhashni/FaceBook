@@ -27,12 +27,28 @@ namespace Nunit_FaceBookProject.WebPages
         [CacheLookup]
         public IWebElement loginbutton;
 
-        [FindsBy(How = How.XPath, Using = "//span[contains(@class,'l9j0dhe7')]")]
+        [FindsBy(How = How.XPath, Using = "//span[@class='l9j0dhe7']")]
         [CacheLookup]
         public IWebElement home;
 
-        //[FindsBy(How = How.XPath, Using = "//*[contains(@class,'n00je7tq arfg74bv qs9ysxi8 k77z8yql i09qtzwb n7fi1qx3 b5wmifdl hzruof5a pmk7jnqg j9ispegn kr520xx4 c5ndavph art1omkt ot9fgl3s rnr61an3')]")]
-        //[CacheLookup]
-        //public IWebElement photo;
+        [FindsBy(How = How.XPath, Using = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/span[1]")]
+        [CacheLookup]
+        public IWebElement createpost;
+
+        [FindsBy(How = How.XPath, Using = "//*[@class='_1mf _1mj']")]
+        [CacheLookup]
+        public IWebElement message;
+
+        [FindsBy(How = How.XPath, Using = "//*[@class='dwxx2s2f dicw6rsg kady6ibp rs0gx3tq'][1]")]
+        [CacheLookup]
+        public IWebElement photo;
+
+        [FindsBy(How = How.XPath, Using = "//*[@class='s45kfl79 emlxlaya bkmhp75w spb7xbtv bp9cbjyn rt8b4zig n8ej3o3l agehan2d sk4xxmp2 rq0escxv pq6dq46d taijpn5t l9j0dhe7 tdjehn4e qypqp5cg q676j6op']")]
+        [CacheLookup]
+        public IWebElement addphoto;
+
+        [FindsBy(How = How.XPath, Using = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[2]/div[1]/div[1]/div[1]")]
+        [CacheLookup]
+        public IWebElement post;
     }
 }

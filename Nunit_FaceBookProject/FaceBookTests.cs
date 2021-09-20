@@ -5,11 +5,11 @@ namespace Nunit_FaceBookProject
     public class Tests:Base.BaseClass
     {
         //Used to test the signup button/registration process
-        [Test, Order(0)]
-        public void TestMethodForSignUpIntoFaceBook()
-        {
-            WebPages.RegisterPage.SignUpintoFacebookWithClass(driver);
-        }
+        //[Test, Order(0)]
+        //public void TestMethodForSignUpIntoFaceBook()
+        //{
+        //    WebPages.RegisterPage.SignUpintoFacebookWithClass(driver);
+        //}
 
         //Used to test the login operation
         [Test, Order(1)]
@@ -20,12 +20,12 @@ namespace Nunit_FaceBookProject
 
         }
 
-        //Used to test after login went to dashbord
-        [Test, Order(2)]
-        public void TestMethodForAfterLoginIntoDashBoard()
-        {
-            WebPages_Actions.LoginPageActions.LoginToFacebook(driver);
-            WebPages_Actions.LoginPageActions.TitleAfterLogin(driver);
-        }
+        ////Used to test after login went to dashbord
+        //[Test, Order(2)]
+        //public void TestMethodForAfterLoginIntoDashBoard()
+        //{
+        //    WebPages_Actions.LoginPageActions.LoginToFacebook(driver);
+        //    WebPages_Actions.LoginPageActions.TitleAfterLogin(driver);
+        //}
     }
 }

@@ -2,6 +2,8 @@
 using Nunit_FaceBookProject.WebPages;
 using NUnit.Framework;
 using OpenQA.Selenium.Interactions;
+using AutoItX3Lib;
+
 
 namespace Nunit_FaceBookProject.WebPages_Actions
 {
@@ -36,10 +38,27 @@ namespace Nunit_FaceBookProject.WebPages_Actions
             notify.SendKeys(Keys.Escape).Build().Perform();
             System.Threading.Thread.Sleep(10000);
             login.home.Click();
-            System.Threading.Thread.Sleep(11000);
-            //login.photo.Click();
-            //System.Threading.Thread.Sleep(9000);
+            System.Threading.Thread.Sleep(9000);
+            login.createpost.Click();
+            System.Threading.Thread.Sleep(9000);
+            login.message.SendKeys("Vacation Begins!!");
+            System.Threading.Thread.Sleep(9000);
+            login.photo.Click();
+            System.Threading.Thread.Sleep(5000);
+            login.addphoto.Click();
+            System.Threading.Thread.Sleep(4000);
+            //AutoIt- Handle Windows that do not belong to Browser
+            AutoItX3 autoIt = new AutoItX3();
+            //Activate so that next set of Action happen on this window
+            autoIt.WinActivate("Open");
+            //Upload an image
+            autoIt.Send(@"C:\Users\vedhashni.v\Downloads\vacation.jpg");
+            System.Threading.Thread.Sleep(2000);
+            autoIt.Send("{Enter}");
 
+            System.Threading.Thread.Sleep(4000);
+            login.post.Click();
+            System.Threading.Thread.Sleep(15000);
         }
 
         //Used to check title given and retived are same
