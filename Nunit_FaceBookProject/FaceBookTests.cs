@@ -1,31 +1,65 @@
+using AventStack.ExtentReports;
 using NUnit.Framework;
+using Nunit_FaceBookProject.ActionDo;
+using Nunit_FaceBookProject.Email;
+using Nunit_FaceBookProject.Report;
 
 namespace Nunit_FaceBookProject
 {
-    public class Tests:Base.BaseClass
+    public class FaceBookTests:Base.BaseClass
     {
-        //Used to test the signup button/registration process
-        //[Test, Order(0)]
-        //public void TestMethodForSignUpIntoFaceBook()
-        //{
-        //    WebPages.RegisterPage.SignUpintoFacebookWithClass(driver);
-        //}
+        public static DoAction pageaction;
+        public static EmailClass email;
+        ExtentReports report = ReportClass.report();
+        ExtentTest test;
 
-        //Used to test the login operation
-        [Test, Order(1)]
-        public void TestMethodForLoginIntoFaceBook()
+        [Test,Order(0)]
+        public void TestMethodForSignUpIntoFaceBook()
         {
-            WebPages_Actions.LoginPageActions.TitleAfterLaunching(driver);
-            WebPages_Actions.LoginPageActions.LoginToFacebook(driver);
-
+            pageaction = new DoAction();
+            pageaction.RegisterIntoFaceBook();
         }
 
-        ////Used to test after login went to dashbord
-        //[Test, Order(2)]
-        //public void TestMethodForAfterLoginIntoDashBoard()
-        //{
-        //    WebPages_Actions.LoginPageActions.LoginToFacebook(driver);
-        //    WebPages_Actions.LoginPageActions.TitleAfterLogin(driver);
-        //}
+        [Test,Order(1)]
+        public void TestMethodForLogIntoFaceBook()
+        {
+            test = report.CreateTest("FaceBookTests");
+            test.Log(Status.Info, "FaceBook Automation");
+            pageaction = new DoAction();
+            pageaction.LoginToFaceBook();
+            TakeScreenShot();
+            System.Threading.Thread.Sleep(200);
+            test.Info("ScreenShot", MediaEntityBuilder.CreateScreenCaptureFromPath(@"C:\Users\vedhashni.v\source\repos\Nunit_FaceBookProject\Nunit_FaceBookProject\ScreenShots\FaceBookTest.png").Build());
+            test.Log(Status.Pass, "TestCases Passed");
+            report.Flush();
+        }
+
+        [Test,Order(2)]
+        public void TestMethodForToUploadPhoto()
+        {
+            pageaction = new DoAction();
+            pageaction.ToPostInFaceBook();
+        }
+
+        [Test,Order(3)]
+        public void TestMethodForToLogoutFromFaceBook()
+        {
+            pageaction = new DoAction();
+            pageaction.ToLogoutFromFaceBook();
+        }
+
+        [Test,Order(4)]
+        public void TestMethodForInvalidLogin()
+        {
+            pageaction = new DoAction();
+            pageaction.CheckInvalidLogin();
+        }
+
+        [Test,Order(5)]
+        public void TestMethodForReportSendingThroughEmail()
+        {
+            email = new EmailClass();
+            email.ToSendReportThroughEmail();
+        }
     }
 }

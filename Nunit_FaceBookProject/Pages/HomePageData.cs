@@ -1,37 +1,28 @@
 ﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-
-namespace Nunit_FaceBookProject.WebPages
+namespace Nunit_FaceBookProject.Pages
 {
-    public class LoginPage
+    public class HomePageData
     {
         //Used to intialize elements of a page class
-        public LoginPage(IWebDriver driver)
+        public HomePageData(IWebDriver driver)
         {
             PageFactory.InitElements(driver, this);
         }
 
-        //Used to find the element email by specifying its locator
-        [FindsBy(How = How.Name, Using = "email")]
+        [FindsBy(How = How.XPath, Using = "//*[@class='bcvklqu9 nzypyw8j']")]
         [CacheLookup]
-        public IWebElement email;
-
-        //Used to find the element password by specifying its id
-        [FindsBy(How = How.Id, Using = "pass")]
-        [CacheLookup]
-        public IWebElement password;
-
-        //Used to find the login button by specifying its name
-        [FindsBy(How = How.Name, Using = "login")]
-        [CacheLookup]
-        public IWebElement loginbutton;
+        public IWebElement dashboard;
 
         [FindsBy(How = How.XPath, Using = "//span[@class='l9j0dhe7']")]
         [CacheLookup]
         public IWebElement home;
 
-        [FindsBy(How = How.XPath, Using = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/span[1]")]
+        [FindsBy(How = How.XPath, Using = "//body[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/span[1]")]
         [CacheLookup]
         public IWebElement createpost;
 
@@ -50,5 +41,10 @@ namespace Nunit_FaceBookProject.WebPages
         [FindsBy(How = How.XPath, Using = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[2]/div[1]/div[1]/div[1]")]
         [CacheLookup]
         public IWebElement post;
+
+        [FindsBy(How = How.XPath, Using = "//*[text()='Vacation Begins!!']")]
+        [CacheLookup]
+        public IWebElement successfulpost;
+
     }
 }
