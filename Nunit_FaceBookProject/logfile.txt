@@ -31,3 +31,6 @@
 2021-10-04 12:55:01,658 INFO Configured
 2021-10-04 12:55:22,622 DEBUG navigating to url
 2021-10-04 12:55:22,751 INFO Window is maximized
+2021-10-05 11:55:45,036 INFO Configured
+2021-10-05 11:56:13,851 DEBUG navigating to url
+2021-10-05 11:56:13,982 INFO Window is maximized

@@ -20,136 +20,168 @@ namespace Nunit_FaceBookProject.ActionDo
         {
             sign = new SignUpPage(driver);
             excel = new ExcelOperation();
-            sign.createnewaccountbtn.Click();
-            System.Threading.Thread.Sleep(1000);
-            //Here we are reading the data from excel
-            excel.PopulateFromExcel(@"C:\Users\vedhashni.v\source\repos\Nunit_FaceBookProject\Nunit_FaceBookProject\DataForTesting\ExcelData.xlsx");
-            System.Threading.Thread.Sleep(1000);
-            sign.FirstName.SendKeys(excel.ReadData(1, "FirstName"));
-            sign.SurName.SendKeys(excel.ReadData(1, "SurName"));
-            sign.Email.SendKeys(excel.ReadData(1, "EmailForSignUp"));
-            sign.ReConfirmEmail.SendKeys(excel.ReadData(1, "ConfirmEmail"));
-            sign.Password.SendKeys(excel.ReadData(1, "PasswordForSignUp"));
-            SelectElement element = new SelectElement(sign.Date);
-            Assert.IsFalse(element.IsMultiple);
-            element.SelectByText("12");
-            SelectElement element1 = new SelectElement(sign.Month);
-            Assert.IsFalse(element.IsMultiple);
-            element1.SelectByValue("1");
-            SelectElement element2 = new SelectElement(sign.Year);
-            Assert.IsFalse(element.IsMultiple);
-            element2.SelectByValue("1999");
-            sign.Gender.Click();
-            Assert.IsTrue(sign.Gender.Enabled);
-            sign.SignUp.Click();
-            TakeScreenShot();
-            System.Threading.Thread.Sleep(1000);
+            try
+            {
+                if (sign.logo.Displayed)
+                {
+                    sign.createnewaccountbtn.Click();
+                    System.Threading.Thread.Sleep(1000);
+                    //Here we are reading the data from excel
+                    excel.PopulateFromExcel(@"C:\Users\vedhashni.v\source\repos\Nunit_FaceBookProject\Nunit_FaceBookProject\DataForTesting\ExcelData.xlsx");
+                    System.Threading.Thread.Sleep(1000);
+                    sign.FirstName.SendKeys(excel.ReadData(1, "FirstName"));
+                    sign.SurName.SendKeys(excel.ReadData(1, "SurName"));
+                    sign.Email.SendKeys(excel.ReadData(1, "EmailForSignUp"));
+                    sign.ReConfirmEmail.SendKeys(excel.ReadData(1, "ConfirmEmail"));
+                    sign.Password.SendKeys(excel.ReadData(1, "PasswordForSignUp"));
+                    SelectElement element = new SelectElement(sign.Date);
+                    Assert.IsFalse(element.IsMultiple);
+                    element.SelectByText("12");
+                    SelectElement element1 = new SelectElement(sign.Month);
+                    Assert.IsFalse(element.IsMultiple);
+                    element1.SelectByValue("1");
+                    SelectElement element2 = new SelectElement(sign.Year);
+                    Assert.IsFalse(element.IsMultiple);
+                    element2.SelectByValue("1999");
+                    sign.Gender.Click();
+                    Assert.IsTrue(sign.Gender.Enabled);
+                    sign.SignUp.Click();
+                    TakeScreenShot();
+                    System.Threading.Thread.Sleep(1000);
+                    log.Info("Registered Successfully");
+                }
+            }
+            catch
+            {
+                throw new CustomException(CustomException.ExceptionType.NoSuchElementException, "webdriver unable to locate element");
+            }
         }
 
         public void LoginToFaceBook()
         {
             excel = new ExcelOperation();
             login = new LoginPage(driver);
-            if (login.logo.Displayed)
+            try
             {
-                string title1 = "Facebook - உள்நுழையவும் அல்லது பதிவுசெய்யவும்";
-                string title = driver.Title;
-                //AreEqual is used to compare expected and actual result
-                Assert.AreEqual(title1, title);
-                //TakeScreenShot();
-                //Here we are reading the data from excel
-                excel.PopulateFromExcel(@"C:\Users\vedhashni.v\source\repos\Nunit_FaceBookProject\Nunit_FaceBookProject\DataForTesting\ExcelData.xlsx");
-                //By invoking the readdate method values in table is retrived
-                login.email.SendKeys(excel.ReadData(1, "Email"));
-                //is used to wait in a particular page before taking another action
-                System.Threading.Thread.Sleep(1000);
-                //By invoking the readdate method values in table is retrived
-                login.password.SendKeys(excel.ReadData(1, "Password"));
-                System.Threading.Thread.Sleep(1000);
-                if (login.email != null && login.password != null)
+                if (login.logo.Displayed)
                 {
-                    login.loginbutton.Click();
-                    System.Threading.Thread.Sleep(1000);
-                    TakeScreenShot();
-                    string title2 = "Facebook";
-                    string title3 = driver.Title;
+                    string title1 = "Facebook - உள்நுழையவும் அல்லது பதிவுசெய்யவும்";
+                    string title = driver.Title;
                     //AreEqual is used to compare expected and actual result
-                    Assert.AreEqual(title2, title3);
-                    Console.WriteLine("Successfully Logged In");
+                    Assert.AreEqual(title1, title);
+                    //TakeScreenShot();
+                    //Here we are reading the data from excel
+                    excel.PopulateFromExcel(@"C:\Users\vedhashni.v\source\repos\Nunit_FaceBookProject\Nunit_FaceBookProject\DataForTesting\ExcelData.xlsx");
+                    //By invoking the readdate method values in table is retrived
+                    login.email.SendKeys(excel.ReadData(1, "Email"));
+                    //is used to wait in a particular page before taking another action
                     System.Threading.Thread.Sleep(1000);
+                    //By invoking the readdate method values in table is retrived
+                    login.password.SendKeys(excel.ReadData(1, "Password"));
+                    System.Threading.Thread.Sleep(1000);
+                    if (login.email != null && login.password != null)
+                    {
+                        login.loginbutton.Click();
+                        System.Threading.Thread.Sleep(1000);
+                        TakeScreenShot();
+                        string title2 = "Facebook";
+                        string title3 = driver.Title;
+                        //AreEqual is used to compare expected and actual result
+                        Assert.AreEqual(title2, title3);
+                        log.Info("Successfully Logged In");
+                        System.Threading.Thread.Sleep(1000);
+                    }
+                    else
+                    {
+                        log.Info("Login Credential is not provided");
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("Login Credential is not provided");
+                    log.Info("Browser is not launched");
                 }
             }
-            else
+            catch
             {
-                Console.WriteLine("Browser is not launched");
+                throw new CustomException(CustomException.ExceptionType.NoSuchElementException, "webdriver unable to locate element");
             }
         }
 
         public void ToPostInFaceBook()
         {
             data = new HomePageData(driver);
-            LoginToFaceBook();
-            if (data.dashboard.Displayed)
+            try
             {
-                data.home.Click();
-                System.Threading.Thread.Sleep(9000);
-                data.createpost.Click();
-                //TakeScreenShot();
-                System.Threading.Thread.Sleep(9000);
-                data.message.SendKeys("Vacation Begins!!");
-                System.Threading.Thread.Sleep(9000);
-                data.photo.Click();
-                System.Threading.Thread.Sleep(9000);
-                data.addphoto.Click();
-                System.Threading.Thread.Sleep(9000);
-                //AutoIt- Handle Windows that do not belong to Browser
-                AutoItX3 autoIt = new AutoItX3();
-                autoIt.ControlFocus("Open", "", "Edit1");
-                var picture = autoIt.ControlSetText("Open", "", "Edit1", @"C:\Users\vedhashni.v\Downloads\vacation.jpg");
-                Assert.NotNull(picture);
-                System.Threading.Thread.Sleep(3000);
-                autoIt.ControlClick("Open", "", "Button1");
-                System.Threading.Thread.Sleep(4000);
-                data.post.Click();
-                System.Threading.Thread.Sleep(1000);
-                TakeScreenShot();
-                if (data.successfulpost.Displayed)
+                LoginToFaceBook();
+                if (data.dashboard.Displayed)
                 {
-                    Console.WriteLine("Photo Uploaded successfully");
+                    data.home.Click();
+                    System.Threading.Thread.Sleep(9000);
+                    data.createpost.Click();
+                    //TakeScreenShot();
+                    System.Threading.Thread.Sleep(9000);
+                    data.message.SendKeys("Vacation Begins!!");
+                    System.Threading.Thread.Sleep(9000);
+                    data.photo.Click();
+                    System.Threading.Thread.Sleep(9000);
+                    data.addphoto.Click();
+                    System.Threading.Thread.Sleep(9000);
+                    //AutoIt- Handle Windows that do not belong to Browser
+                    AutoItX3 autoIt = new AutoItX3();
+                    autoIt.ControlFocus("Open", "", "Edit1");
+                    var picture = autoIt.ControlSetText("Open", "", "Edit1", @"C:\Users\vedhashni.v\Downloads\vacation.jpg");
+                    Assert.NotNull(picture);
+                    System.Threading.Thread.Sleep(3000);
+                    autoIt.ControlClick("Open", "", "Button1");
+                    System.Threading.Thread.Sleep(4000);
+                    data.post.Click();
+                    System.Threading.Thread.Sleep(1000);
+                    TakeScreenShot();
+                    if (data.successfulpost.Displayed)
+                    {
+                        log.Info("Photo Uploaded successfully");
+                    }
+                    else
+                    {
+                        log.Info("Photo Not Uploaded successfully");
+                    }
+                    ((IJavaScriptExecutor)driver).ExecuteScript("scroll(0,1500)");
+                    System.Threading.Thread.Sleep(2000);
                 }
                 else
                 {
-                    Console.WriteLine("Photo Not Uploaded successfully");
+                    log.Info("Not Logged In");
                 }
-                ((IJavaScriptExecutor)driver).ExecuteScript("scroll(0,1500)");
-                System.Threading.Thread.Sleep(2000);
             }
-            else
+            catch
             {
-                Console.WriteLine("Not Logged In");
+                throw new CustomException(CustomException.ExceptionType.NoSuchElementException, "webdriver unable to locate element");
             }
         }
 
         public void ToLogoutFromFaceBook()
         {
             logout = new LogoutPage(driver);
-            ToPostInFaceBook();
-            logout.accountbtn.Click();
-            System.Threading.Thread.Sleep(2000);
-            logout.logout.Click();
-            TakeScreenShot();
-            bool flag = logout.logoutsuccessful.Displayed;
-            if (flag)
+            try
             {
-                Console.WriteLine("Logout Successfully");
+                ToPostInFaceBook();
+                logout.accountbtn.Click();
+                System.Threading.Thread.Sleep(2000);
+                logout.logout.Click();
+                TakeScreenShot();
+                bool flag = logout.logoutsuccessful.Displayed;
+                if (flag)
+                {
+                    log.Info("Logout Successfully");
+                }
+                else
+                {
+                    log.Info("Not Logout Successfully");
+                }
             }
-            else
+            catch
             {
-                Console.WriteLine("Not Logout Successfully");
+                throw new CustomException(CustomException.ExceptionType.NoSuchElementException, "webdriver unable to locate element");
             }
         }
 
@@ -157,12 +189,19 @@ namespace Nunit_FaceBookProject.ActionDo
         {
             excel = new ExcelOperation();
             login = new LoginPage(driver);
-            excel.PopulateFromExcel(@"C:\Users\vedhashni.v\source\repos\Nunit_FaceBookProject\Nunit_FaceBookProject\DataForTesting\ExcelData.xlsx");
-            login.email.SendKeys(excel.ReadData(2, "Email"));
-            login.password.SendKeys(excel.ReadData(2, "Password"));
-            login.loginbutton.Click();
-            TakeScreenShot();
-            Assert.IsTrue(login.alertmessage.Displayed);
+            try
+            {
+                excel.PopulateFromExcel(@"C:\Users\vedhashni.v\source\repos\Nunit_FaceBookProject\Nunit_FaceBookProject\DataForTesting\ExcelData.xlsx");
+                login.email.SendKeys(excel.ReadData(2, "Email"));
+                login.password.SendKeys(excel.ReadData(2, "Password"));
+                login.loginbutton.Click();
+                TakeScreenShot();
+                Assert.IsTrue(login.alertmessage.Displayed);
+            }
+            catch
+            {
+                throw new CustomException(CustomException.ExceptionType.NoSuchElementException, "webdriver unable to locate element");
+            }
         }
     }
 }

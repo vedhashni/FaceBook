@@ -11,6 +11,10 @@ namespace Nunit_FaceBookProject.Pages
             PageFactory.InitElements(driver, this);
         }
 
+        [FindsBy(How = How.XPath, Using = "//*[@class='fb_logo _8ilh img']")]
+        [CacheLookup]
+        public IWebElement logo;
+
         [FindsBy(How = How.XPath, Using = "//*[@class='_6ltg'][2]")]
         [CacheLookup]
         public IWebElement createnewaccountbtn;
